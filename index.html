@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>New Tab</title>
+		<link rel="stylesheet" href="/styles.css">
+	</head>
+	<body>
+
+		<div></div>
+
+		<form action="https://google.com/search" method="GET">
+			<h1 id="time">
+			</h1>
+			<p id="date"></p>
+			<br>
+			<input type="text" placeholder="Search anything..." name="q">
+			<img src="/arrow.png">
+			<br><br>
+			<section>
+			</section>
+		</form>
+
+		<p>source: <a href="" id="so">Pinterest</a></p>
+
+		<img src="/settings.png" onclick="document.getElementById('modal_1').style.display='block';">
+
+		<div id="modal_1">
+			<h2>Settings</h2>
+			<h4>Search Engine</h4>
+			<input type="text" placeholder="https://google.com/search" value="https://google.com/search" id="se">
+			<button onclick="saveSettings(this);">Save & Close</button>
+		</div>
+
+		<div id="modal_2">
+			<h2>Add/Remove Bookmark</h2>
+			<input type="text" placeholder="Link here...">
+			<button onclick="saveBM(this);">Add or Remove</button>
+		</div>
+
+		<script src="/script.js">
+		</script>
+	</body>
+</html>
