@@ -22,7 +22,7 @@
 
 		<p>source: <a href="" id="so">Pinterest</a></p>
 
-		<img src="/settings.png" onclick="document.getElementById('modal_1').style.display='block';">
+		<img src="/settings.png" onclick="document.getElementById('modal_1').classList.toggle('active');">
 
 		<div id="modal_1">
 			<h2>Settings</h2>
@@ -36,6 +36,11 @@
 			<input type="text" placeholder="Link here...">
 			<button onclick="saveBM(this);">Add or Remove</button>
 		</div>
+
+		<div id="feed"></div>
+
+		<main>
+		</main>
 
 		<script src="/script.js">
 		</script>

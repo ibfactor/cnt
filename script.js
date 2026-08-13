@@ -51,11 +51,11 @@ function saveBM(x) {
 		document.querySelector(`a[href="${x.previousElementSibling.value}"]`)
 		document.querySelector(`section`).innerHTML = document.querySelector(`section`).innerHTML.split(`<a href="#"`)[0];
 		document.querySelector(`section`).innerHTML += `<a href="${x.previousElementSibling.value}">${x.previousElementSibling.value.replaceAll('https://', '').split(".")[0]}</a>`;
-		document.querySelector(`section`).innerHTML += ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').style.display='block';">+</a>`;
+		document.querySelector(`section`).innerHTML += ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').classList.toggle('active');">+</a>`;
 
 	}
 	localStorage.setItem("bm", document.querySelector("section").innerHTML.split(`<a href="#"`)[0]);
-	document.querySelector(`section`).innerHTML = localStorage.getItem("bm").replaceAll("</a><a", "</a> <a") + ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').style.display='block';">+</a>`;
+	document.querySelector(`section`).innerHTML = localStorage.getItem("bm").replaceAll("</a><a", "</a> <a") + ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').classList.toggle('active');">+</a>`;
 }
 
 if (localStorage.getItem("se")) {
@@ -66,4 +66,38 @@ if (localStorage.getItem("se")) {
 if (!localStorage.getItem("bm")) {
 	localStorage.setItem("bm", `<a href="https://gmail.com">gmail</a><a href="https://instagram.com">instagram</a><a href="https://reddit.com">reddit</a>`);
 }
-document.querySelector(`section`).innerHTML = localStorage.getItem("bm").replaceAll("</a><a", "</a> <a") + ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').style.display='block';">+</a>`;
+document.querySelector(`section`).innerHTML = localStorage.getItem("bm").replaceAll("</a><a", "</a> <a") + ` <a href="#" style="border:0;" onclick="document.getElementById('modal_2').classList.toggle('active');">+</a>`;
+
+
+async function fetchFeed() {
+	const f1 = await fetch("https://www.dawn.com/feeds/home");
+	const f2 = await f1.text();
+
+	window.doc = new DOMParser().parseFromString(f2, "text/xml");
+
+	window.doc.querySelectorAll("item").forEach((i) => {
+		document.getElementById("feed").innerHTML += `<a target="_blank" href="${i.querySelector("link").innerHTML}">${i.querySelector("title").innerHTML}</a>`;
+	});
+}
+
+fetchFeed();
+
+async function runWeather(lat, long) {
+	const f1 = await fetch("https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + long + "&current=temperature_2m,relative_humidity_2m,precipitation&forecast_days=1");
+	const f2 = await f1.json();
+	document.querySelector("main").innerHTML = 
+		`
+			${f2.current.temperature_2m}${f2.current_units.temperature_2m},
+			${f2.current.relative_humidity_2m}${f2.current_units.relative_humidity_2m}
+		`
+	;
+}
+
+
+navigator.geolocation.getCurrentPosition(
+  position => {
+    const { latitude, longitude } = position.coords;
+    runWeather(latitude, longitude);
+  },
+  error => console.error(error)
+);

@@ -20,7 +20,7 @@ body {
 }
 
 
-div {
+div:not(div:nth-last-of-type(1)) {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -132,4 +132,31 @@ button {
 	background-color: rgba(100, 100, 100, 0.5);
 	color: white;
 	margin-top: 10px;
+}
+
+
+#feed {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: calc(50% / 2 - 50px);
+	height: 100%;
+	overflow: scroll;
+	scrollbar-width: none;
+}
+#feed a {
+	display: inline-block;
+	padding: 30px;
+}
+
+main {
+	position: fixed;
+	bottom: 5px;
+	width: 100%;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.active {
+	display: block !important;
 }
