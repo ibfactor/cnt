@@ -1,7 +1,8 @@
 ![alt text](/thumb.png)
 ### <p align="center">Cool New Tab</p>
 ***
-A ready to use version can be accessed [here](https://newtab.ibfactor.com/).
+A ready to use version can be accessed [here](https://newtab.ibfactor.com/).\
+Runs on vanilla JS, HTML, & CSS
 #### Features:
 - Dawn News live feed
 - Current Outdoor Temperature and Relative Humidity
