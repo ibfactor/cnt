@@ -10,6 +10,17 @@ A ready to use version can be accessed [here](https://newtab.ibfactor.com/).
 - Changing Search Engine (Google by default)
 - Randomised pixel art background
 
+#### Usage:
+Using the `+` button, bookmarks can be added or removed by entering the URL to be added or removed.\
+The settings button can be used to change search engines.\
+Examples of valid search engine URLs:
+- https://google.com/search
+- https://search.yahoo.com/search
+- https://bing.com/search
+
+In order to see weather information, please allow location access.\
+**This project does not log geolocation data**
+
 #### Self-Hosting:
 This is a completely static website.\
 You can clone this repository into your website folder and access the `index.html` file.\
